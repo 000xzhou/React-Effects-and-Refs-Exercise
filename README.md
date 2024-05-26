@@ -8,3 +8,4 @@ To test this:
 
 Testing using Vitest
 [Setup References](https://victorbruce82.medium.com/vitest-with-react-testing-library-in-react-created-with-vite-3552f0a9a19a)
+[Error References](https://dev.to/mbarzeev/from-jest-to-vitest-migration-and-benchmark-23pl)

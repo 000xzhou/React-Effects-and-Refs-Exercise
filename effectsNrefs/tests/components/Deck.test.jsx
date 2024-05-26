@@ -43,6 +43,8 @@ axios.get.mockImplementation((url) => {
     return Promise.resolve(mockDeckResponse);
   } else if (url === `${DECK_URL}/testdeckid/draw/?count=1`) {
     return Promise.resolve(mockCardResponse);
+  } else if (url === `${DECK_URL}/testdeckid/shuffle/`) {
+    return Promise.resolve(mockDeckResponse);
   }
   return Promise.reject(new Error("not found"));
 });
@@ -63,12 +65,12 @@ describe("Deck", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it("should draw a card", async () => {
-    let getByText, getByAltText;
+  it("should draw a card and reshuffle", async () => {
+    let getByText, queryByAltText;
     await act(async () => {
       const rendered = render(<Deck />);
       getByText = rendered.getByText;
-      getByAltText = rendered.getByAltText;
+      queryByAltText = rendered.queryByAltText;
     });
 
     // draw card
@@ -78,10 +80,21 @@ describe("Deck", () => {
     });
     // waitFor to wait for the asynchronous update of the DOM.
     await waitFor(() => {
-      const cardImage = getByAltText("HEARTS 6");
+      let cardImage = queryByAltText("HEARTS 6");
+      expect(cardImage).toBeInTheDocument();
       expect(cardImage.src).toBe(
         "https://deckofcardsapi.com/static/img/6H.png"
       );
+    });
+    // shuffle deck
+    const newDeckButton = getByText("New Deck");
+    await act(async () => {
+      fireEvent.click(newDeckButton);
+    });
+
+    await waitFor(() => {
+      let cardImage = queryByAltText("HEARTS 6");
+      expect(cardImage).not.toBeInTheDocument();
     });
   });
 });
