@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card > should match snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <img
+      alt="cat"
+      src="https://www.bluecross.org.uk/sites/default/files/assets/images/124044lpr.jpg"
+    />
+  </div>
+</DocumentFragment>
+`;

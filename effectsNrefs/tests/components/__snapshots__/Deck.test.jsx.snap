@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Deck > should match snapshot 1`] = `
+<DocumentFragment>
+  <button>
+    New Deck
+  </button>
+  <button>
+    Draw Card
+  </button>
+  <div
+    style="display: flex; flex-wrap: wrap;"
+  />
+</DocumentFragment>
+`;
